@@ -1,2 +1,2 @@
 # mysic
-Music Player with classical musics playlist
+Music Player with no copyright musics playlist
