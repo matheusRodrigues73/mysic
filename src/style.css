@@ -1,0 +1,195 @@
+:root {
+  /* colors */
+  --background-color: #242434;
+  --app-background-color: #343434;
+  --foreground-color: #41415f;
+  --highlight-color: #bf3043;
+  --primary-color: #dfdff1;
+  --secondary-color: #fff;
+
+  /* fonts */
+}
+
+body {
+  background-color: var(--app-background-color);
+  color: var(--primary-color);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.player-bar,
+.playlist-bar {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.point {
+  width: 7px;
+  height: 7px;
+  background-color: var(--foreground-color);
+  border-radius: 50%;
+}
+
+h1 {
+  font-size: 1.3rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.redline-content {
+  flex-grow: 1;
+}
+
+.redline {
+  width: 100%;
+  height: 2px;
+  background-color: var(--highlight-color);
+}
+
+.player,
+.playlist {
+  width: 500px;
+  background-color: var(--background-color);
+  border: 3px solid var(--foreground-color);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.player {
+  height: 270px;
+}
+
+.player-content {
+  flex: 1 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 5px;
+}
+
+#player-img-container {
+  display: block;
+  width: 200px;
+  height: 210px;
+  background-color: var(--background-color);
+  padding: 7px;
+  border: 3px solid var(--foreground-color);
+}
+
+#player-img-container img {
+  width: 100%;
+  height: 100%;
+  background-color: var(--app-background-color);
+}
+
+.player-display {
+  width: 250px;
+  height: 210px;
+  background-color: var(--background-color);
+  padding: 7px;
+  border: 3px solid var(--foreground-color);
+}
+
+.player-song-info {
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-around;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  background-color: transparent;
+  color: var(--primary-color);
+  padding: 0 2px;
+  border: none;
+  cursor: pointer;
+}
+
+.controls button:hover {
+  outline: 1px dashed var(--highlight-color);
+}
+
+.fill-button {
+  color: var(--highlight-color);
+}
+
+i {
+  font-size: 1.6rem;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.playlist {
+  flex: 1 0 auto;
+  height: auto;
+}
+
+#playlist-songs {
+  flex: 1 0 auto;
+  width: 500px;
+  height: 100%;
+  background-color: var(--foreground-color);
+  padding: 0;
+  margin: 0;
+  visibility: visible;
+  list-style: none;
+}
+
+.playlist-song {
+  width: 488px;
+  height: 60px;
+  padding: 6px;
+  border-bottom: 1px solid var(--background-color);
+  display: flex;
+  gap: 10px;
+}
+
+[aria-current="true"] {
+  background-color: var(--app-background-color);
+}
+
+.song-info {
+  width: 448px;
+  height: 100%;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.playlist-song-title {
+  width: 270px;
+  text-align: start;
+}
+
+.delete > i:hover {
+  background-color: #9f2131;
+}
