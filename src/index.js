@@ -82,7 +82,32 @@ const shuffle = () => {
   playSong(userData?.songs[0].id);
 };
 
-const deleteSong = () => {};
+const deleteSong = (id) => {
+  const deletedSong = userData?.songs.find((song) => song.id === id);
+  if (userData?.currentSong === deletedSong) {
+    pauseSong();
+    userData.currentSong = null;
+    userData.songCurrentTime = 0;
+    setPlayerDisplaySong();
+  }
+  userData.songs = userData?.songs.filter((song) => song !== deletedSong);
+  renderSongs(userData?.songs);
+  markCurrentSong(`song-${userData?.currentSong?.id}`);
+
+  if (userData?.songs.length === 0) {
+    const resetButton = document.createElement("button");
+    const resetText = document.createTextNode("Reset Playlist");
+    resetButton.className = "resetButton";
+    resetButton.appendChild(resetText);
+    resetButton.addEventListener("click", () => {
+      userData.songs = sortAlphabetcal(allSongs);
+      userData.currentSong = null;
+      userData.songCurrentTime = 0;
+      renderSongs(userData?.songs);
+    });
+    playlistSongs.appendChild(resetButton);
+  }
+};
 
 const renderSongs = (array) => {
   const songsHTML = array.map(
@@ -93,12 +118,22 @@ const renderSongs = (array) => {
                 <span class="plalist-song-artist">${song.artist}</span>
                 <span class="playlist-song-time">${song.time}</span>
             </button>
-            <button class="delete">
+            <button class="delete" data-deleteId = "${song.id}">
                 <i class="bi bi-x-circle"></i>
             </button>
         </li>`
   );
   playlistSongs.innerHTML = songsHTML.join("");
+  document
+    .querySelectorAll(".song-info")
+    .forEach((btn) =>
+      btn.addEventListener("click", () => playSong(Number(btn.dataset.songid)))
+    );
+  document.querySelectorAll(".delete").forEach((deleteBtn) => {
+    deleteBtn.addEventListener("click", () =>
+      deleteSong(Number(deleteBtn.dataset.deleteid))
+    );
+  });
 };
 
 const markCurrentSong = (id) => {
@@ -131,12 +166,6 @@ playButton.addEventListener("click", () => {
     playSong(userData?.currentSong.id);
   }
 });
-
-document
-  .querySelectorAll(".song-info")
-  .forEach((btn) =>
-    btn.addEventListener("click", () => playSong(Number(btn.dataset.songid)))
-  );
 
 pauseButton.addEventListener("click", () => pauseSong());
 

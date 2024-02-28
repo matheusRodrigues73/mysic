@@ -193,3 +193,10 @@ i {
 .delete > i:hover {
   background-color: #9f2131;
 }
+
+.resetButton {
+  width: 100%;
+  font-size: 1rem;
+  text-align: center;
+  padding: 1rem;
+}
