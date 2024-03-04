@@ -1,8 +1,8 @@
 import allSongsArray from "./allSongsArray.js";
 import fillButtons from "./fillButtons.js";
 import sortAlphabetcal from "./sortAlphabetcal.js";
-import "./style.css";
 import toggleButton from "./toggleButton.js";
+import "./style.css";
 
 const playButton = document.querySelector("#play");
 const pauseButton = document.querySelector("#pause");
@@ -10,6 +10,7 @@ const previousButton = document.querySelector("#previous");
 const nextButton = document.querySelector("#next");
 const shuffleButton = document.querySelector("#shuffle");
 
+const playerCover = document.querySelector("#player-cover");
 const playerSongTitle = document.querySelector("#player-song-title");
 const playerSongArtist = document.querySelector("#player-song-artist");
 const playlistSongs = document.querySelector("#playlist-songs");
@@ -39,6 +40,7 @@ const playSong = (id) => {
   }
   markCurrentSong(`song-${id}`);
   setPlayerDisplaySong();
+  updateCover();
   toggleButton(playButton, pauseButton);
   audio.play();
 };
@@ -89,6 +91,7 @@ const deleteSong = (id) => {
     userData.currentSong = null;
     userData.songCurrentTime = 0;
     setPlayerDisplaySong();
+    updateCover();
   }
   userData.songs = userData?.songs.filter((song) => song !== deletedSong);
   renderSongs(userData?.songs);
@@ -155,8 +158,32 @@ const setPlayerDisplaySong = () => {
     : "";
 };
 
-const getCurrentSongIndex = () =>
-  userData?.songs.indexOf(userData?.currentSong);
+const getCurrentSongIndex = () => {
+  return userData?.songs.indexOf(userData?.currentSong);
+};
+
+const updateCover = () => {
+  switch (userData?.currentSong?.style) {
+    case "classical":
+      playerCover.src = "./images/classical.jpeg";
+      playerCover.alt = "Classicals Songs Cover Art";
+      break;
+    case "rock":
+      playerCover.src = "./images/rock.jpg";
+      playerCover.alt = "Rocks Songs Cover Art";
+      break;
+    case "eletronic":
+      playerCover.src = "./images/eletronic.jpg";
+      playerCover.alt = "Eletronics Songs Cover Art";
+      break;
+    default:
+      playerCover.src =
+        "https://s3.amazonaws.com/org.freecodecamp.mp3-player-project/digital-drift.jpg";
+      playerCover.alt = "Song Cover Art";
+      break;
+  }
+};
+
 renderSongs(userData?.songs);
 
 playButton.addEventListener("click", () => {

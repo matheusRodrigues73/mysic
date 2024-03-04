@@ -51,7 +51,7 @@ export default [
     id: 6,
     title: "In The Dark",
     src: "./musics/in-the-dark.mp3",
-    artist: " LemonMusicStudio",
+    artist: " Lemon Music Studio",
     style: "rock",
     time: "1:41",
   },
